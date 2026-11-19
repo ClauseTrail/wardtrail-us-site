@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WardTrail: HIPAA and federal compliance audits for United States hospitals</title>
+<meta name="description" content="WardTrail runs a hospital's HIPAA security risk analysis, breach clock and federal compliance audits in one place, with one control library and one evidence repository. US Edition. Try the live demo.">
+<link rel="icon" href="demo/static/favicon.svg">
+<style>
+:root { --ink: #0f2a2e; --ink2: #17393e; --paper: #f5f5f2; --card: #fff; --line: #dfe3dc; --text: #1c2b2d; --muted: #5d6f70; --iris: #4338a8; --iris-soft: #ecebfa; --mint: #8fe0c3; --warn: #b26a00; --warn-soft: #fbf1dd;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; --sans: Inter, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+* { box-sizing: border-box; } html { scroll-behavior: smooth; }
+body { margin: 0; font: 16px/1.6 var(--sans); color: var(--text); background: var(--paper); }
+a { color: var(--iris); } img { max-width: 100%; height: auto; display: block; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.2; margin: 0; text-wrap: balance; }
+h2 { font-size: clamp(26px, 3.4vw, 36px); margin-bottom: 12px; } h3 { font-size: 20px; margin-bottom: 6px; }
+p { margin: 0 0 14px; } .lede { font-size: 18px; color: var(--muted); max-width: 720px; }
+nav { position: sticky; top: 0; z-index: 5; background: rgba(15,42,46,.97); color: #fff; }
+nav .wrap { display: flex; align-items: center; gap: 22px; height: 58px; }
+nav .brand { display: flex; align-items: center; gap: 10px; font: 700 19px var(--serif); color: #fff; text-decoration: none; margin-right: auto; }
+nav .brand img { width: 26px; height: 26px; } nav a.l { color: #c5d6d2; text-decoration: none; font-size: 14.5px; } nav a.l:hover { color: #fff; }
+.btn { display: inline-block; padding: 11px 20px; border-radius: 7px; font-weight: 600; text-decoration: none; font-size: 15.5px; border: 1px solid transparent; }
+.btn.mint { background: var(--mint); color: var(--ink); } .btn.mint:hover { background: #a6ebd2; }
+.btn.ghost { border-color: #4b6b68; color: #fff; } .btn.ghost:hover { border-color: var(--mint); }
+.btn.iris { background: var(--iris); color: #fff; } nav .btn { padding: 7px 14px; font-size: 14px; }
+header.hero { background: var(--ink); color: #fff; padding: 72px 0 0; overflow: hidden; }
+.hero h1 { font-size: clamp(36px, 5.6vw, 60px); max-width: 820px; } .hero h1 em { font-style: normal; color: var(--mint); }
+.hero p.sub { font-size: 19px; color: #c5d6d2; max-width: 690px; margin: 20px 0 28px; }
+.hero .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; } .hero .fine { font-size: 13.5px; color: #93aba6; margin-bottom: 44px; }
+.hero .shotwrap { display: block; overflow: hidden; border-radius: 10px 10px 0 0; border: 1px solid #2c4d50; border-bottom: 0; box-shadow: 0 -10px 60px rgba(0,0,0,.35); }
+section { padding: 76px 0; } section.alt { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.eyebrow { font-size: 12.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--iris); margin-bottom: 10px; }
+.chain { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 30px 0 0; }
+.chain li { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 9px 14px; font-size: 14.5px; font-weight: 600; }
+.chain li::after { content: "→"; margin-left: 12px; color: #9aaba8; font-weight: 400; } .chain li:last-child::after { content: ""; margin: 0; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 30px; }
+.fw { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 24px; border-top: 4px solid var(--iris); } .fw.b { border-top-color: #1f8a6a; }
+.fw ul, .plain { margin: 10px 0 0; padding-left: 20px; } .fw li, .plain li { margin-bottom: 6px; }
+.feature { display: grid; grid-template-columns: 5fr 7fr; gap: 44px; align-items: center; margin-top: 64px; } .feature:nth-of-type(even) .txt { order: 2; }
+.feature > a { display: block; overflow: hidden; min-width: 0; border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 12px 40px rgba(15,42,46,.12); } .feature > div { min-width: 0; } .feature img { width: 100%; }
+.feature .req { font: 600 12px ui-monospace, Menlo, monospace; color: var(--muted); margin-bottom: 8px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
+.tile { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 20px; } .tile p { margin: 0; font-size: 15px; color: var(--muted); }
+.formula { background: var(--ink); color: #fff; border-radius: 10px; padding: 26px 28px; margin-top: 28px; font: 600 clamp(15px, 2vw, 19px) var(--serif); }
+.formula span { color: var(--mint); } .formula small { display: block; font: 400 14px var(--sans); color: #b6c9c5; margin-top: 10px; }
+.no { background: var(--warn-soft); border-left: 4px solid var(--warn); border-radius: 0 8px 8px 0; padding: 18px 22px; margin-top: 26px; }
+table { width: 100%; border-collapse: collapse; margin-top: 22px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; font-size: 15px; }
+th, td { text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--line); vertical-align: top; } th { background: #f0f1ec; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); } tr:last-child td { border-bottom: 0; }
+.steps { counter-reset: s; list-style: none; padding: 0; margin: 26px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.steps li { counter-increment: s; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 20px; } .steps li::before { content: counter(s); display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--iris-soft); color: var(--iris); font-weight: 700; margin-bottom: 10px; }
+.status { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 26px; }
+footer { background: var(--ink); color: #b6c9c5; padding: 40px 0; font-size: 14.5px; } footer a { color: var(--mint); } footer b { color: #fff; }
+.need { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 26px; } .need > div { background: var(--iris-soft); border-radius: 10px; padding: 18px 20px; } .need p { margin: 4px 0 0; font-size: 15px; }
+.steps.four { grid-template-columns: repeat(4, 1fr); } .steps p { margin: 0; font-size: 15px; color: var(--muted); } h3.sub { margin: 40px 0 0; font-size: 22px; }
+.os { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 16px; } .os ol { margin: 8px 0 10px; padding-left: 20px; font-size: 15px; } .os li { margin-bottom: 5px; } .os .tile p { margin-top: 8px; } .os .stop { font-size: 14px; }
+code { font: 13.5px ui-monospace, Menlo, Consolas, monospace; background: #eceee7; padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; } pre { background: var(--ink); color: #e3efec; border-radius: 8px; padding: 12px 14px; margin: 10px 0; overflow-x: auto; } pre code { background: none; padding: 0; color: inherit; overflow-wrap: normal; }
+details.more { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 0 20px; margin-top: 14px; } details.more summary { cursor: pointer; font-weight: 600; padding: 15px 0; } details.more[open] { padding-bottom: 16px; } details.more ol { padding-left: 20px; margin: 0 0 10px; } details.more table { margin-top: 4px; }
+@media (max-width: 860px) { .need, .os, .steps.four { grid-template-columns: 1fr; }  .two, .feature, .grid3, .steps, .status { grid-template-columns: 1fr; } .feature:nth-of-type(even) .txt { order: 0; } nav a.l { display: none; } section { padding: 54px 0; } .feature { margin-top: 44px; gap: 20px; } }
+/* Phones: a full desktop screenshot shrunk to phone width is unreadable, so show the working area of each screen (without the menu) at about 1.7 times the size. */
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; } header.hero { padding-top: 48px; } .hero p.sub { font-size: 17px; } .lede { font-size: 16.5px; } section { padding: 44px 0; }
+  .hero .cta .btn { flex: 1 1 100%; text-align: center; }
+  .feature > a, .hero .shotwrap { aspect-ratio: 4 / 3; } .feature > a img, .hero .shotwrap img { width: 172%; max-width: none; margin-left: -27%; }
+  .chain li { padding: 7px 10px; font-size: 13.5px; } .chain li::after { margin-left: 8px; }
+  .fw, .tile, .steps li { padding: 18px; } .formula { padding: 20px; } .no { padding: 16px 18px; }
+  table { font-size: 14px; } th, td { padding: 9px 10px; }
+}
+@media (min-width: 601px) and (max-width: 860px) { .grid3, .steps, .steps.four { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 861px) and (max-width: 1040px) { .steps.four { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="#top"><img src="demo/static/favicon.svg" alt="">WardTrail</a>
+  <a class="l" href="#features">Features</a><a class="l" href="#scoring">Scoring</a><a class="l" href="#assistant">AI assistant</a><a class="l" href="#install">Install</a><a class="l" href="#status">Status</a>
+  <a class="btn mint" href="demo/">Live demo</a>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <h1>Every requirement, <em>traced to the ward.</em></h1>
+  <p class="sub">WardTrail, US Edition. It runs a hospital's HIPAA security risk analysis, breach clock and audits against the federal rules and security frameworks it answers to, with one control library and one evidence repository serving all of them.</p>
+  <div class="cta"><a class="btn mint" href="demo/">Open the live demo</a><a class="btn ghost" href="#features">See what it does</a><a class="btn ghost" href="#install">Install it</a></div>
+  <p class="fine">The demo is the real interface running in your browser on fictional data. It is read-only and needs no sign-in.</p>
+  <a class="shotwrap" href="demo/"><img src="images/dashboard.png" alt="WardTrail executive dashboard showing separate HIPAA and ISO 27001 scores, audit progress, findings, CAPA aging and risks for a sample hospital" width="1440" height="1180"></a>
+</div></header>
+
+<section><div class="wrap">
+  <div class="eyebrow">The problem</div>
+  <h2>Many rulebooks, the same evidence, collected again and again</h2>
+  <p class="lede">HIPAA, the Medicare Conditions of Participation, the HHS cybersecurity goals and a cyber insurer's questionnaire ask many of the same questions: who can open a patient record, whether logs are reviewed, what the agreement with the imaging vendor says. WardTrail keeps one chain from the requirement to the fix, and lets one control and its evidence count for every requirement it meets.</p>
+  <ul class="chain"><li>Requirement</li><li>Applicability</li><li>Processing activity</li><li>Risk</li><li>Control</li><li>Evidence</li><li>Audit test</li><li>Finding</li><li>Corrective action</li><li>Management review</li></ul>
+  <div class="two">
+    <div class="fw"><h3>HIPAA and federal hospital rules</h3><ul><li>Applicability for each hospital, with justification and approval</li><li>Health information inventory, processing register and data flow map</li><li>Notice of Privacy Practices versions and append-only authorization history</li><li>Patient rights requests with 30 and 60 day clocks, and privacy complaints</li><li>Business associates, the four-factor breach assessment and 60-day notice clocks</li></ul></div>
+    <div class="fw b"><h3>Security frameworks</h3><ul><li>HHS Cybersecurity Performance Goals, NIST CSF 2.0 and, optionally, ISO 27001</li><li>Information asset register</li><li>Security risk analysis, treatment plan and heat map</li><li>Statement of Applicability with approved versions</li><li>Technical assessment results and internal audit</li></ul></div>
+  </div>
+</div></section>
+
+<section class="alt" id="features"><div class="wrap">
+  <div class="eyebrow">Features</div>
+  <h2>Built around how an audit actually runs</h2>
+  <p class="lede">Every screen below is in the live demo.</p>
+
+  <div class="feature"><div class="txt"><div class="req">Applicability</div><h3>Decide what applies, and prove why</h3><p>One row per requirement for each hospital. Marking a requirement not applicable demands a written justification, and every decision needs approval. Requirements that have been published but are not yet in force are flagged and assessed as readiness.</p></div>
+    <a href="demo/#/applicability"><img src="images/applicability.png" alt="Applicability assessment matrix with a decision, justification, effective date and approval for each requirement" loading="lazy"></a></div>
+
+  <div class="feature"><div class="txt"><div class="req">Health information</div><h3>See where patient data goes</h3><p>The data flow map is drawn from the register. Flows that are not encrypted in transit, or that leave the United States, stand out as dashed red lines. The health information inventory is built from the same records, so it never goes stale.</p></div>
+    <a href="demo/#/dataflows"><img src="images/dataflow.png" alt="Data flow map linking individuals, departments, systems and vendors, with unencrypted flows highlighted" loading="lazy"></a></div>
+
+  <div class="feature"><div class="txt"><div class="req">Incidents and breaches</div><h3>A breach clock that knows the 500 rule</h3><p>Every incident carries the four-factor risk assessment HIPAA asks for. Notice dates for patients and HHS are worked out from the discovery date and the number of people affected: 60 days, or after year end for breaches under 500. A person makes and approves the decision; the system never sends a notice.</p></div>
+    <a href="demo/#/soa"><img src="images/breach.png" alt="Incident record with breach risk assessment and notice dates" loading="lazy"></a></div>
+
+  <div class="feature"><div class="txt"><div class="req">Risk</div><h3>Risk before and after controls</h3><p>Risks are scored on likelihood and impact, shown on inherent and residual heat maps. A low residual score never accepts a risk: acceptance is a recorded decision by an authorized approver who is not the risk owner.</p></div>
+    <a href="demo/#/heatmap"><img src="images/heatmap.png" alt="Inherent and residual risk heat maps" loading="lazy"></a></div>
+
+  <div class="feature"><div class="txt"><div class="req">Findings and CAPA</div><h3>Corrective action that cannot close itself</h3><p>A failed test raises a finding that keeps its link to the test, the criterion and the evidence. The corrective action moves through eight stages. Closure needs implementation evidence and an effectiveness check by someone other than the owner or implementer.</p></div>
+    <a href="demo/#/e/capa/4"><img src="images/capa.png" alt="A corrective action record showing its lifecycle stages and the independent verification rule" loading="lazy"></a></div>
+
+  <div class="feature"><div class="txt"><div class="req">Traceability</div><h3>From the clause to the fix, on one page</h3><p>Pick any requirement and see its controls, evidence, audit tests, findings and corrective actions side by side. A dashed column shows where nothing has been recorded yet.</p></div>
+    <a href="demo/#/trace/60"><img src="images/trace.png" alt="Traceability view from requirement through control, evidence and audit test to finding" loading="lazy"></a></div>
+
+  <div class="grid3">
+    <div class="tile"><h3>Framework versions</h3><p>Draft, review, approve, publish. Published versions are frozen, and a completed audit stays linked to the version it was assessed against.</p></div>
+    <div class="tile"><h3>Evidence repository</h3><p>Versions, validity and retention dates, text extraction, an access log, and review by someone who did not submit it. Rejection needs a reason.</p></div>
+    <div class="tile"><h3>Audit working papers</h3><p>Generated checklists, samples that can be re-drawn from a recorded seed, and results that lock once the reviewer approves them.</p></div>
+    <div class="tile"><h3>Vendors and incidents</h3><p>Vendor assessments flag high-risk business associates. Incidents follow eight stages, with a four-factor breach risk assessment and a notification decision made and approved by a person.</p></div>
+    <div class="tile"><h3>18 reports, 5 dashboards</h3><p>From the applicability report to the management review report. Export to Excel, CSV or PDF.</p></div>
+    <div class="tile"><h3>14 roles, several hospitals</h3><p>One organization can hold many hospitals. A consultant sees only the hospitals assigned to them.</p></div>
+  </div>
+</div></section>
+
+<section id="scoring"><div class="wrap">
+  <div class="eyebrow">Scoring</div>
+  <h2>A score you can defend</h2>
+  <p class="lede">The figure on the dashboard follows one rule, shown on hover wherever it appears.</p>
+  <div class="formula">Compliance score = <span>verified compliant</span> requirements ÷ <span>applicable, assessed</span> requirements × 100
+    <small>Partially compliant, non-compliant and not assessed requirements never count as compliant. Not applicable requirements are left out. HIPAA and ISO 27001 are always shown separately.</small></div>
+  <div class="two">
+    <div class="fw"><h3>Not yet in force is kept apart</h3><p>The HIPAA Privacy Rule changes issued on November 16, 2026, such as answering record requests in 15 days instead of 30, have a compliance date still to come. They are scored as readiness and kept out of the in-force score.</p></div>
+    <div class="fw b"><h3>Compliant needs a person and proof</h3><p>A requirement reaches "Compliant" only when an authorized person records it, after applicability is approved, with evidence that a reviewer has accepted and that is still valid.</p></div>
+  </div>
+  <div class="no"><b>What WardTrail will not do.</b> It does not give legal advice, declare a hospital compliant, issue certificates, send statutory notifications, or run penetration tests. The combined score is an operational view only: it is not a legal determination and not an ISO certification result.</div>
+</div></section>
+
+<section class="alt" id="assistant"><div class="wrap">
+  <div class="eyebrow">AI audit assistant</div>
+  <h2>It reads, matches and drafts. People decide.</h2>
+  <div class="feature" style="margin-top:30px"><div class="txt">
+    <p>Six assistants: document analysis, gap identification, observation drafting, corrective action suggestions, audit report drafting and control mapping.</p>
+    <ul class="plain"><li>Every output is a recommendation with its sources and a confidence level.</li><li>A person accepts or rejects it, and that decision is recorded.</li><li>It cannot mark a requirement compliant, accept evidence, approve a result or close a corrective action. This is enforced in code.</li><li>By default it runs on built-in rules and nothing leaves the server. A language model is optional and can be privately hosted.</li></ul></div>
+    <a href="demo/#/e/ai_recommendation/1"><img src="images/ai.png" alt="An AI recommendation listing possible gaps with confidence levels and source references, awaiting human review" loading="lazy"></a></div>
+</div></section>
+
+<section id="install"><div class="wrap">
+  <div class="eyebrow">Install</div>
+  <h2>Install in four steps</h2>
+  <p class="lede">Written for people who are not technical. WardTrail runs on one computer or server, and your data stays on it.</p>
+
+  <div class="need">
+    <div><b>What you need</b><p>One of these on the computer: <b>Docker Desktop</b> (recommended, it includes the database) or <b>Python 3.12 or 3.13</b> (good for trying it out). About 2 GB of memory and 2 GB of disk.</p></div>
+    <div><b>What it costs you in time</b><p>The first start takes a few minutes while it sets itself up. After that it starts in seconds.</p></div>
+  </div>
+
+  <ol class="steps four">
+    <li><h3>Get the package</h3><p>Extract the WardTrail package you were given into a folder. The package is shared on request.</p></li>
+    <li><h3>Start it</h3><p>Use the start file for your computer, shown below. Your browser opens at <b>http://localhost:8000</b>.</p></li>
+    <li><h3>Create your organization</h3><p>Enter your organization name, your name, your email and a password of 10 or more characters with letters and numbers. You become the first administrator.</p></li>
+    <li><h3>Explore, then start for real</h3><p>Leave the sample hospital group ticked to look around. When ready, remove the sample data, add your hospital and build the compliance register.</p></li>
+  </ol>
+
+  <h3 class="sub">Step 2 on your computer</h3>
+  <div class="os">
+    <div class="tile"><h3>Windows</h3><ol><li>Install Docker Desktop and open it once.</li><li>Open the WardTrail folder.</li><li>Double-click <b>start-windows.bat</b>.</li></ol><p class="stop">To stop: double-click <b>stop-windows.bat</b>.</p></div>
+    <div class="tile"><h3>Mac</h3><ol><li>Install Docker Desktop and open it once.</li><li>Open the WardTrail folder.</li><li>Double-click <b>start-mac.command</b>. If macOS blocks it, right-click it, choose <b>Open</b>, then <b>Open</b> again.</li></ol><p class="stop">To stop: run <code>./stop.sh</code> in Terminal.</p></div>
+    <div class="tile"><h3>Linux or any terminal</h3><pre><code>cd WardTrail
+./start.sh</code></pre><p>No Docker? The same file uses Python and a built-in database file instead.</p><p class="stop">To stop: <code>./stop.sh</code>. Your data is kept.</p></div>
+  </div>
+
+  <h3 class="sub">After the first sign-in</h3>
+  <table><thead><tr><th>Do this</th><th>Where</th></tr></thead><tbody>
+    <tr><td>Take the ten-minute tour on the sample data</td><td>Dashboards, Applicability assessment, Data flow register, Statement of Applicability, CAPA tracker</td></tr>
+    <tr><td>Remove the sample data when you are ready</td><td>Administration, Settings, Remove sample data. The framework library stays.</td></tr>
+    <tr><td>Add your hospital, departments and people</td><td>Administration, Hospitals and Users</td></tr>
+    <tr><td>Have the framework library validated by a qualified person</td><td>Framework library</td></tr>
+    <tr><td>Build the compliance register and decide applicability</td><td>Applicability and compliance, Applicability assessment</td></tr>
+    <tr><td>Turn on two-step sign-in for everyone</td><td>Administration, Settings</td></tr>
+  </tbody></table>
+
+  <details class="more"><summary>Putting it on a server with HTTPS</summary>
+    <ol><li>Point your domain name at the server and open ports 80 and 443.</li><li>In the file <code>.env</code> set <code>WARDTRAIL_DOMAIN</code> to your domain and <code>WARDTRAIL_BIND=127.0.0.1</code>. Change <code>POSTGRES_PASSWORD</code> before the first start.</li><li>Start with the command below. The certificate is obtained and renewed for you.</li></ol>
+    <pre><code>docker compose --profile https up -d --build</code></pre>
+    <p>Back up with <code>scripts/backup.sh</code> and keep the copy off the server. Encrypt the server's disk: WardTrail does not encrypt stored files by itself.</p>
+  </details>
+  <details class="more"><summary>If something does not work</summary>
+    <table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody>
+      <tr><td>Nothing at localhost:8000</td><td>The first start is still setting up. Wait a few minutes and refresh.</td></tr>
+      <tr><td>"Port 8000 is in use"</td><td>Open <code>.env</code>, change <code>WARDTRAIL_PORT</code> to another number such as 8010, and start again.</td></tr>
+      <tr><td>Docker is not running</td><td>Open Docker Desktop and wait until it says it is running, then start again.</td></tr>
+      <tr><td>Forgot the only administrator's password</td><td>On the server run <code>python -m app.cli reset-password you@example.com</code></td></tr>
+    </tbody></table>
+  </details>
+
+  <h3 class="sub">Built in from the first start</h3>
+  <table><thead><tr><th>Built in</th><th>How</th></tr></thead><tbody>
+    <tr><td>Sign-in</td><td>Passwords with lockout, two-step sign-in, and single sign-on with OpenID Connect</td></tr>
+    <tr><td>Separation of data</td><td>Each organization's records are kept apart; access narrows further by hospital, department and audit team</td></tr>
+    <tr><td>Audit trail</td><td>Every change, approval, export and AI decision, chained so tampering is detectable</td></tr>
+    <tr><td>Hospital systems</td><td>Read-only connectors by file, folder or REST address, and an API for the EHR, HRIS, ERP or SIEM to send records in</td></tr>
+  </tbody></table>
+  <div class="no"><b>Before you rely on it.</b> The start files for Windows and Mac have not yet been run for this product; the Docker and Python set-ups are tested on Linux. The framework library is starter content and must be validated by a qualified person. No penetration test has been done yet, so use masked or sample data until one has.</div>
+  <p style="margin-top:22px"><a class="btn iris" href="demo/">Try the live demo first</a></p>
+</div></section>
+
+<section class="alt" id="status"><div class="wrap">
+  <div class="eyebrow">Status</div>
+  <h2>Version 1.0: what is checked and what is not</h2>
+  <div class="status">
+    <div class="fw b"><h3>Checked</h3><ul><li>18 automated tests pass, including the breach clock and patient rights deadlines</li><li>Docker set-up passes over HTTP and HTTPS, including a restart</li><li>Main pages opened in a browser on the US sample data</li><li>All 18 reports run</li></ul></div>
+    <div class="fw"><h3>Not yet done</h3><ul><li>Review of the starter library by a qualified United States health care privacy and security professional; state law is not included</li><li>Penetration test and load test</li><li>User acceptance testing with a hospital</li><li>Connectors for named hospital systems</li></ul></div>
+  </div>
+  <div class="no"><b>About the library.</b> The requirement titles and summaries that ship with WardTrail are starter content in plain words. They are not the text of any regulation or standard, and ISO wording is not reproduced. Each framework version is marked unvalidated until a qualified person confirms it.</div>
+  <p style="margin-top:34px"><a class="btn iris" href="demo/">Open the live demo</a></p>
+</div></section>
+
+<footer><div class="wrap">
+  <p><b>WardTrail</b> · US Edition 1.0. Rule status last checked November 18, 2026.</p>
+  <p>Developed by <a href="https://aravindbalaji.com">Aravind Balaji</a>. Copyright © 2026 Aravind Balaji. All rights reserved. All demo data is fictional.</p>
+</div></footer>
+</body>
+</html>
